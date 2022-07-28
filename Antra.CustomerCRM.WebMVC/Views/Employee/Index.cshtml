@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Employee>
+<h1>Employee Index!</h1>
+<span>Hello @ViewBag.UserName</span>
+
+@{
+    int a = 20;
+    int b = a + 20;
+
+    <span>@a+20</span>
+    <span>@b</span>
+} 
+
+@{
+    foreach(var value in ViewBag.Countries) { // Can do, but not really something we do
+        <span>@value</span>
+    }
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach(var m in Model)
+            {
+                <tr>
+                <td>@m.Id</td>
+                <td>@m.FirstName</td>
+                <td>@m.LastName</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<div class="container">
+    <div class="row">
+@{
+    for(int i = 0; i < 24; i++)
+    {
+        <div class="card shadow w-auto h-100 p-0 m-1">
+            <div class="card-body">
+                <h5 class="card-title">Create This Task</h5>
+                <h6 class="card-subtitle mb-2 text-muted">5 of 10 completed | Due in 6 hours</h6>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">An item</li>
+              <li class="list-group-item">A second item</li>
+              <li class="list-group-item">A third item</li>
+            </ul>
+          </div>
+    }
+}
+</div></div>
