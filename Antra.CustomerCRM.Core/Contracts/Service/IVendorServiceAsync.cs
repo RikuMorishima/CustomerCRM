@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Antra.CustomerCRM.Core.Contracts.Service
 {
-    public interface IRegionServiceAsync: IServiceAsync<RegionModel>
+    public interface IVendorServiceAsync : IServiceAsync<VendorModel>
     {
     }
 }

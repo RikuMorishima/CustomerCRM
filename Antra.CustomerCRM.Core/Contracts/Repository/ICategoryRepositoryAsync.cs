@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace Antra.CustomerCRM.Core.Contracts.Repository
 {
-    public interface IRegionRepositoryAsync:IRepositoryAsync<Region>
-    {
-
-    }
-
+	public interface ICategoryRepositoryAsync: IRepositoryAsync<Category>
+	{
+	}
 }

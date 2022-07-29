@@ -27,7 +27,7 @@ namespace Antra.CustomerCRM.WebMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                await regionServiceAsync.InsertRegion(model);
+                await regionServiceAsync.InsertRegionAsync(model);
                 return RedirectToAction("Index");
             }
             return View(model);

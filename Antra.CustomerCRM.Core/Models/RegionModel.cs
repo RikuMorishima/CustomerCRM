@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Antra.CustomerCRM.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Antra.CustomerCRM.Core.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Region Name is Required")]
-        [MaxLength(20, ErrorMessage ="Region Name can be a maximum of 20 characters long")]
+        [MaxLength(50, ErrorMessage ="Region Name can be a maximum of 50 characters long")]
         public string Name { get; set; }
     }
 }
