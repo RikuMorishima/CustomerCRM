@@ -23,9 +23,19 @@ namespace Antra.CustomerCRM.Infrastructure.Service
 			throw new NotImplementedException();
 		}
 
-		public Task<int> InsertModelAsync(T model)
+        public Task<T> GetModelByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> InsertModelAsync(T model)
 		{
 			throw new NotImplementedException();
 		}
-	}
+
+        public Task<int> UpdateModelAsync(T model)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

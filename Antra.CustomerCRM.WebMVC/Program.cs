@@ -10,8 +10,27 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
+builder.Services.AddScoped<ICategoryRepositoryAsync, CategoryRepositoryAsync>();
+builder.Services.AddScoped<ICategoryServiceAsync, CategoryServiceAsync>();
+
+builder.Services.AddScoped<ICustomerRepositoryAsync, CustomerRepositoryAsync>();
+builder.Services.AddScoped<ICustomerServiceAsync, CustomerServiceAsync>();
+
+builder.Services.AddScoped<IEmployeeRepositoryAsync, EmployeeRepositoryAsync>();
+builder.Services.AddScoped<IEmployeeServiceAsync, EmployeeServiceAsync>();
+
+builder.Services.AddScoped<IProductRepositoryAsync, ProductRepositoryAsync>();
+builder.Services.AddScoped<IProductServiceAsync, ProductServiceAsync>();
+
 builder.Services.AddScoped<IRegionRepositoryAsync, RegionRepositoryAsync>();
 builder.Services.AddScoped<IRegionServiceAsync, RegionServiceAsync>();
+
+builder.Services.AddScoped<IShipperRepositoryAsync, ShipperRepositoryAsync>();
+builder.Services.AddScoped<IShipperServiceAsync, ShipperServiceAsync>();
+
+builder.Services.AddScoped<IVendorRepositoryAsync, VendorRepositoryAsync>();
+builder.Services.AddScoped<IVendorServiceAsync, VendorServiceAsync>();
+
 
 
 builder.Services

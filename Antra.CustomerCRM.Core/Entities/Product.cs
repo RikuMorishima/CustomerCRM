@@ -11,26 +11,37 @@ namespace Antra.CustomerCRM.Core.Entities
     public class Product
     {
         [Column(TypeName = "int")]
+        [Required]
         public int Id { get; set; }
         [Column(TypeName = "varchar(30)")]
+        [Required]
         public string Name { get; set; }
         [Column(TypeName = "int")]
+        [Required]
         public int SupplierId { get; set; }
         [Column(TypeName = "int")]
+        [Required]
         public int CategoryId { get; set; }
         [Column(TypeName = "int")]
+        [Required]
         public int QuantityPerUnit { get; set; }
         [Column(TypeName = "decimal(18,2)")]
+        [Required]
         public decimal UnitPrice { get; set; }
         [Column(TypeName = "int")]
+        [Required]
         public int UnitsInStock { get; set; }
         [Column(TypeName = "int")]
+        [Required]
         public int UnitsOnOrder { get; set; }
         [Column(TypeName = "int")]
+        [Required]
         public int ReorderLevel { get; set; }
         [Column(TypeName = "bit")]
+        [Required]
         public bool Discontined { get; set; }
         [Column(TypeName = "int")]
+        [Required]
         public int VendorId { get; set; }
     }
 }

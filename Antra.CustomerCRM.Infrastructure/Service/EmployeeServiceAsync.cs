@@ -57,6 +57,11 @@ namespace Antra.CustomerCRM.Infrastructure.Service
 
         }
 
+        public Task<EmployeeModel> GetModelByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<int> InsertModelAsync(EmployeeModel model)
         {
             Employee r = new Employee();
@@ -75,6 +80,11 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             r.ReportsTo = model.ReportsTo;
             r.PhotoPath = model.PhotoPath;
             return await repository.InsertAsync(r);
+        }
+
+        public Task<int> UpdateModelAsync(EmployeeModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

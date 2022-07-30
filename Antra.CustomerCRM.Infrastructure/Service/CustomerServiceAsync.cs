@@ -49,6 +49,11 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             return list;
         }
 
+        public Task<CustomerModel> GetModelByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<int> InsertModelAsync(CustomerModel model)
         {
             Customer entity = new Customer();
@@ -61,6 +66,11 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             entity.Country = model.Country;
             entity.Phone = model.Phone;
             return await repository.InsertAsync(entity);
+        }
+
+        public Task<int> UpdateModelAsync(CustomerModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

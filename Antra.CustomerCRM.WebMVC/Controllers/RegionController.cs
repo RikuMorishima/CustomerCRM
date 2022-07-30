@@ -6,7 +6,7 @@ namespace Antra.CustomerCRM.WebMVC.Controllers
 {
     public class RegionController : Controller
     {
-        IRegionServiceAsync regionServiceAsync;
+        readonly IRegionServiceAsync regionServiceAsync;
         public RegionController(IRegionServiceAsync _regionServiceAsync)
         {
             regionServiceAsync = _regionServiceAsync;
@@ -27,7 +27,25 @@ namespace Antra.CustomerCRM.WebMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                await regionServiceAsync.InsertRegionAsync(model);
+                await regionServiceAsync.InsertModelAsync(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            RegionModel model = await regionServiceAsync.GetModelByIdAsync(id);
+            return View(model); 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(RegionModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await regionServiceAsync.UpdateModelAsync(model);
                 return RedirectToAction("Index");
             }
             return View(model);

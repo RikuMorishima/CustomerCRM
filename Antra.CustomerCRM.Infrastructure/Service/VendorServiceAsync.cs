@@ -49,6 +49,11 @@ namespace Antra.CustomerCRM.Infrastructure.Service
 
         }
 
+        public Task<VendorModel> GetModelByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<int> InsertModelAsync(VendorModel model)
         {
             Vendor r = new Vendor();
@@ -59,6 +64,11 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             r.EmailId = model.EmailId;
             r.IsActive = model.IsActive;
             return await repository.InsertAsync(r);
+        }
+
+        public Task<int> UpdateModelAsync(VendorModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

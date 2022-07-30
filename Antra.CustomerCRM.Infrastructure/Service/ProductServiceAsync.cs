@@ -53,6 +53,11 @@ namespace Antra.CustomerCRM.Infrastructure.Service
 
         }
 
+        public Task<ProductModel> GetModelByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<int> InsertModelAsync(ProductModel model)
         {
             Product r = new Product();
@@ -67,6 +72,11 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             r.Discontined = model.Discontined;
             r.VendorId = model.VendorId;
             return await repository.InsertAsync(r);
+        }
+
+        public Task<int> UpdateModelAsync(ProductModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

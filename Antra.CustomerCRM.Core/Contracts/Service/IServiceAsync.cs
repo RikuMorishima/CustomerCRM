@@ -11,5 +11,8 @@ namespace Antra.CustomerCRM.Core.Contracts.Service
 		Task<int> InsertModelAsync(T model);
 		Task<IEnumerable<T>> GetAllModelAsync();
 		Task<int> DeleteModelAsync(int id);
+		Task<int> UpdateModelAsync(T model);
+
+		Task<T> GetModelByIdAsync(int id);
 	}
 }

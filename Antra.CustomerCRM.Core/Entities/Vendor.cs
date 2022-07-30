@@ -13,18 +13,25 @@ namespace Antra.CustomerCRM.Core.Entities
     public class Vendor
     {
         [Column(TypeName = "int")]
+        [Required]
         public int Id { get; set; }
         [Column(TypeName = "varchar(50)")]
+        [Required]
         public string Name { get; set; }
         [Column(TypeName = "varchar(50)")]
+        [Required]
         public string City { get; set; }
         [Column(TypeName = "varchar(50)")]
+        [Required]
         public string Country { get; set; }
         [Column(TypeName = "varchar(50)")]
+        [Required]
         public string Mobile { get; set; }
         [Column(TypeName = "varchar(50)")]
+        [Required]
         public string EmailId { get; set; }
         [Column(TypeName = "bit")]
+        [Required]
         public bool IsActive { get; set; }
     }
 }
