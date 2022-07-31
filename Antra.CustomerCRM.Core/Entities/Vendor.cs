@@ -13,7 +13,6 @@ namespace Antra.CustomerCRM.Core.Entities
     public class Vendor
     {
         [Column(TypeName = "int")]
-        [Required]
         public int Id { get; set; }
         [Column(TypeName = "varchar(50)")]
         [Required]
@@ -33,5 +32,7 @@ namespace Antra.CustomerCRM.Core.Entities
         [Column(TypeName = "bit")]
         [Required]
         public bool IsActive { get; set; }
+
+        public ICollection<Product> ProductsRef { get; set; }
     }
 }

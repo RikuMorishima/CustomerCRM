@@ -12,7 +12,6 @@ namespace Antra.CustomerCRM.Core.Entities
     public class Category
     {
         [Column(TypeName = "int")]
-        [Required]
         public int Id { get; set; }
         [Column(TypeName = "varchar(20)")]
         [Required]

@@ -11,7 +11,6 @@ namespace Antra.CustomerCRM.Core.Entities
     public class Employee
     {
         [Column(TypeName = "int")]
-        [Required]
         public int Id { get; set; }
         [Column(TypeName = "varchar(20)")]
         [Required]
@@ -54,5 +53,8 @@ namespace Antra.CustomerCRM.Core.Entities
         [Column(TypeName = "varchar(MAX)")]
         [Required]
         public string PhotoPath { get; set; }
+
+        //Navigational Properties
+        public Region RegionRef { get; set; }
     }
 }

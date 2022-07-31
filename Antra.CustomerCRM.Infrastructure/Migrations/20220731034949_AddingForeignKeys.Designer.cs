@@ -4,6 +4,7 @@ using Antra.CustomerCRM.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Antra.CustomerCRM.Infrastructure.Migrations
 {
     [DbContext(typeof(CustomerCrmDbContext))]
-    partial class CustomerCrmDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220731034949_AddingForeignKeys")]
+    partial class AddingForeignKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,7 +223,7 @@ namespace Antra.CustomerCRM.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Regions");
+                    b.ToTable("Regiosn");
                 });
 
             modelBuilder.Entity("Antra.CustomerCRM.Core.Entities.Shipper", b =>

@@ -14,12 +14,20 @@ namespace Antra.CustomerCRM.Infrastructure.Data
         {          
         }
 
-        public DbSet<Category> Category { get; set; }
-        public DbSet<Customer> Customer { get; set; }
-        public DbSet<Employee> Employee { get; set; }
-        public DbSet<Product> Product { get; set; }
-        public DbSet<Region> Region { get; set; }
-        public DbSet<Shipper> Shipper { get; set; }
-        public DbSet<Vendor> Vendor { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            //builder.Entity<Product>()
+            //    .HasKey(nameof(Product.Id), nameof(Product.VendorId),
+            //    nameof(Product.CategoryId), nameof(Product.SupplierId));
+
+        }
+
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<Shipper> Shippers { get; set; }
+        public DbSet<Vendor> Vendors { get; set; }
     }
 }

@@ -10,8 +10,8 @@ namespace Antra.CustomerCRM.Core.Entities
 {
     public class Customer
     {
+
         [Column(TypeName = "int")]
-        [Required]
         public int Id { get; set; }
         [Column(TypeName = "varchar(30)")]
         [Required]
@@ -26,7 +26,7 @@ namespace Antra.CustomerCRM.Core.Entities
         [Required]
         public string City { get; set; }
         [Column(TypeName = "int")]
-        [Required]
+
         public int RegionId { get; set; }
         [Column(TypeName = "int")]
         [Required]

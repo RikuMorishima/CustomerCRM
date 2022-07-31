@@ -11,7 +11,7 @@ namespace Antra.CustomerCRM.Core.Entities
 {
     public class Region
     {
-        [Required]
+
         public int Id { get; set; }
         [Column(TypeName ="varchar(50)")]
         [Required]
@@ -19,6 +19,7 @@ namespace Antra.CustomerCRM.Core.Entities
 
 
         //Navigational Properties
-        public ICollection<Customer> Customers { get; set; }
+        public ICollection<Customer> CustomersRef { get; set; }
+        public ICollection<Employee> EmployeesRef { get; set; }
     }
 }

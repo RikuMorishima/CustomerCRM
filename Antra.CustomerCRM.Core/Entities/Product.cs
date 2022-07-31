@@ -10,17 +10,16 @@ namespace Antra.CustomerCRM.Core.Entities
 {
     public class Product
     {
+
         [Column(TypeName = "int")]
-        [Required]
+
         public int Id { get; set; }
         [Column(TypeName = "varchar(30)")]
         [Required]
         public string Name { get; set; }
         [Column(TypeName = "int")]
-        [Required]
         public int SupplierId { get; set; }
         [Column(TypeName = "int")]
-        [Required]
         public int CategoryId { get; set; }
         [Column(TypeName = "int")]
         [Required]
@@ -41,7 +40,10 @@ namespace Antra.CustomerCRM.Core.Entities
         [Required]
         public bool Discontined { get; set; }
         [Column(TypeName = "int")]
-        [Required]
         public int VendorId { get; set; }
+
+        // Navigational Properties
+        public Vendor VendorRef { get; set; }
+        public Category CategoryRef { get; set; }
     }
 }

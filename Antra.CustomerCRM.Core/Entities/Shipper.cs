@@ -11,7 +11,6 @@ namespace Antra.CustomerCRM.Core.Entities
 {
     public class Shipper
     {
-        [Required]
         public int Id { get; set; }
         [Column(TypeName = "varchar(50)")]
         [Required]
@@ -19,6 +18,9 @@ namespace Antra.CustomerCRM.Core.Entities
         [Column(TypeName = "varchar(10)")]
         [Required]
         public string Phone { get; set; }
+
+        // Navigational Properties
+        public ICollection<Product> ProductsRef { get; set; }
 
     }
 }
