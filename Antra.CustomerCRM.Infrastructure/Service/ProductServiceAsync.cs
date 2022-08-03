@@ -53,9 +53,26 @@ namespace Antra.CustomerCRM.Infrastructure.Service
 
         }
 
-        public Task<ProductModel> GetModelByIdAsync(int id)
+        public async Task<ProductModel> GetModelByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var item = await repository.GetByIdAsync(id);
+            if (item != null)
+            {
+                ProductModel r = new ProductModel();
+                r.Id = item.Id;
+                r.Name = item.Name;
+                r.SupplierId = item.SupplierId;
+                r.CategoryId = item.CategoryId;
+                r.QuantityPerUnit = item.QuantityPerUnit;
+                r.UnitPrice = item.UnitPrice;
+                r.UnitsInStock = item.UnitsInStock;
+                r.UnitsOnOrder = item.UnitsOnOrder;
+                r.ReorderLevel = item.ReorderLevel;
+                r.Discontined = item.Discontined;
+                r.VendorId = item.VendorId;
+                return r;
+            }
+            return null;
         }
 
         public async Task<int> InsertModelAsync(ProductModel model)
@@ -74,9 +91,20 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             return await repository.InsertAsync(r);
         }
 
-        public Task<int> UpdateModelAsync(ProductModel model)
+        public async Task<int> UpdateModelAsync(ProductModel model)
         {
-            throw new NotImplementedException();
+            Product r = new Product();
+            r.Name = model.Name;
+            r.SupplierId = model.SupplierId;
+            r.CategoryId = model.CategoryId;
+            r.QuantityPerUnit = model.QuantityPerUnit;
+            r.UnitPrice = model.UnitPrice;
+            r.UnitsInStock = model.UnitsInStock;
+            r.UnitsOnOrder = model.UnitsOnOrder;
+            r.ReorderLevel = model.ReorderLevel;
+            r.Discontined = model.Discontined;
+            r.VendorId = model.VendorId;
+            return await repository.UpdateAsync(r);
         }
     }
 }

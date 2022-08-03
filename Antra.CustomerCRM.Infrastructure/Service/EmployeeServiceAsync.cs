@@ -57,9 +57,30 @@ namespace Antra.CustomerCRM.Infrastructure.Service
 
         }
 
-        public Task<EmployeeModel> GetModelByIdAsync(int id)
+        public async Task<EmployeeModel> GetModelByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var item = await repository.GetByIdAsync(id);
+            if (item != null)
+            {
+                EmployeeModel r = new EmployeeModel();
+                r.Id = item.Id;
+                r.FirstName = item.FirstName;
+                r.LastName = item.LastName;
+                r.Title = item.Title;
+                r.TitleOfCourtesy = item.TitleOfCourtesy;
+                r.BirthDate = item.BirthDate;
+                r.HireDate = item.HireDate;
+                r.Address = item.Address;
+                r.City = item.City;
+                r.RegionId = item.RegionId;
+                r.PostalCode = item.PostalCode;
+                r.Country = item.Country;
+                r.Phone = item.Phone;
+                r.ReportsTo = item.ReportsTo;
+                r.PhotoPath = item.PhotoPath;
+                return r;
+            }
+            return null;
         }
 
         public async Task<int> InsertModelAsync(EmployeeModel model)
@@ -82,9 +103,24 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             return await repository.InsertAsync(r);
         }
 
-        public Task<int> UpdateModelAsync(EmployeeModel model)
+        public async Task<int> UpdateModelAsync(EmployeeModel model)
         {
-            throw new NotImplementedException();
+            Employee entity = new Employee();
+            entity.FirstName = model.FirstName;
+            entity.LastName = model.LastName;
+            entity.Title = model.Title;
+            entity.TitleOfCourtesy = model.TitleOfCourtesy;
+            entity.BirthDate = model.BirthDate;
+            entity.HireDate = model.HireDate;
+            entity.Address = model.Address;
+            entity.City = model.City;
+            entity.RegionId = model.RegionId;
+            entity.PostalCode = model.PostalCode;
+            entity.Country = model.Country;
+            entity.Phone = model.Phone;
+            entity.ReportsTo = model.ReportsTo;
+            entity.PhotoPath = model.PhotoPath;
+            return await repository.UpdateAsync(entity);
         }
     }
 }

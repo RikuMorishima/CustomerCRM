@@ -49,9 +49,23 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             return list;
         }
 
-        public Task<CustomerModel> GetModelByIdAsync(int id)
+        public async Task<CustomerModel?> GetModelByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var item = await repository.GetByIdAsync(id);
+            if (item != null)
+            {
+                CustomerModel r = new CustomerModel();
+                r.Name = item.Name;
+                r.Title = item.Title;
+                r.Address = item.Address;
+                r.City = item.City;
+                r.RegionId = item.RegionId;
+                r.PostalCode = item.PostalCode;
+                r.Country = item.Country;
+                r.Phone = item.Phone;
+                return r;
+            }
+            return null;
         }
 
         public async Task<int> InsertModelAsync(CustomerModel model)
@@ -68,9 +82,18 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             return await repository.InsertAsync(entity);
         }
 
-        public Task<int> UpdateModelAsync(CustomerModel model)
+        public async Task<int> UpdateModelAsync(CustomerModel model)
         {
-            throw new NotImplementedException();
+            Customer entity = new Customer();
+            entity.Name = model.Name;
+            entity.Title = model.Title;
+            entity.Address = model.Address;
+            entity.City = model.City;
+            entity.RegionId = model.RegionId;
+            entity.PostalCode = model.PostalCode;
+            entity.Country = model.Country;
+            entity.Phone = model.Phone;
+            return await repository.UpdateAsync(entity);
         }
     }
 }

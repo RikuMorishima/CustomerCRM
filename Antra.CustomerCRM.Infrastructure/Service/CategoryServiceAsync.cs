@@ -45,9 +45,18 @@ namespace Antra.CustomerCRM.Infrastructure.Service
 
         }
 
-        public Task<CategoryModel> GetModelByIdAsync(int id)
+        public async Task<CategoryModel?> GetModelByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var item = await repository.GetByIdAsync(id);
+            if (item != null)
+            {
+                CategoryModel r = new CategoryModel();
+                r.Id = item.Id;
+                r.Name = item.Name;
+                r.Description = item.Description;
+                return r;
+            }
+            return null; 
         }
 
         public async Task<int> InsertModelAsync(CategoryModel model)
@@ -57,9 +66,11 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             return await repository.InsertAsync(entity);
         }
 
-        public Task<int> UpdateModelAsync(CategoryModel model)
+        public async Task<int> UpdateModelAsync(CategoryModel model)
         {
-            throw new NotImplementedException();
+            Category entity = new Category();
+            entity.Name = model.Name;
+            return await repository.UpdateAsync(entity);
         }
     }
 }

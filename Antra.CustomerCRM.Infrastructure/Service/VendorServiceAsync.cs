@@ -49,9 +49,22 @@ namespace Antra.CustomerCRM.Infrastructure.Service
 
         }
 
-        public Task<VendorModel> GetModelByIdAsync(int id)
+        public async Task<VendorModel> GetModelByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var item = await repository.GetByIdAsync(id);
+            if (item != null)
+            {
+                VendorModel r = new VendorModel();
+                r.Id = item.Id;
+                r.Name = item.Name;
+                r.City = item.City;
+                r.Country = item.Country;
+                r.Mobile = item.Mobile;
+                r.EmailId = item.EmailId;
+                r.IsActive = item.IsActive;
+                return r;
+            }
+            return null;
         }
 
         public async Task<int> InsertModelAsync(VendorModel model)
@@ -66,9 +79,16 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             return await repository.InsertAsync(r);
         }
 
-        public Task<int> UpdateModelAsync(VendorModel model)
+        public async Task<int> UpdateModelAsync(VendorModel model)
         {
-            throw new NotImplementedException();
+            Vendor r = new Vendor();
+            r.Name = model.Name;
+            r.City = model.City;
+            r.Country = model.Country;
+            r.Mobile = model.Mobile;
+            r.EmailId = model.EmailId;
+            r.IsActive = model.IsActive;
+            return await repository.UpdateAsync(r);
         }
     }
 }

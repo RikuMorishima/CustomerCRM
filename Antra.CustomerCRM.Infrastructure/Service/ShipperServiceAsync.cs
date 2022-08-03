@@ -43,9 +43,17 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             return list;
         }
 
-        public Task<Shipper> GetModelByIdAsync(int id)
+        public async Task<ShipperModel> GetModelByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var item = await repository.GetByIdAsync(id);
+            if (item != null)
+            {
+                ShipperModel r = new ShipperModel();
+                r.Name = item.Name;
+                r.Phone = item.Phone;
+                return r;
+            }
+            return null;
         }
 
         public async Task<int> InsertModelAsync(ShipperModel model)
@@ -56,14 +64,12 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             return await repository.InsertAsync(r);
         }
 
-        public Task<int> UpdateModelAsync(ShipperModel model)
+        public async Task<int> UpdateModelAsync(ShipperModel model)
         {
-            throw new NotImplementedException();
-        }
-
-        Task<ShipperModel> IServiceAsync<ShipperModel>.GetModelByIdAsync(int id)
-        {
-            throw new NotImplementedException();
+            Shipper r = new Shipper();
+            r.Name = model.Name;
+            r.Phone = model.Phone;
+            return await repository.UpdateAsync(r);
         }
     }
 }
