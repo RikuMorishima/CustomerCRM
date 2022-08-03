@@ -12,7 +12,7 @@ namespace Antra.CustomerCRM.Infrastructure.Service
 {
     public class ProductServiceAsync : IProductServiceAsync
     {
-        IProductRepositoryAsync repository;
+        private readonly IProductRepositoryAsync repository;
         public ProductServiceAsync(IProductRepositoryAsync repository)
         {
             this.repository = repository;

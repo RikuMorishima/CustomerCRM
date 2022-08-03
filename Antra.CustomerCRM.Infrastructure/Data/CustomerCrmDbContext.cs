@@ -1,4 +1,5 @@
 ﻿using Antra.CustomerCRM.Core.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Antra.CustomerCRM.Infrastructure.Data
 {
-    public class CustomerCrmDbContext :DbContext
+    public class CustomerCrmDbContext : IdentityDbContext<ApplicationUser>
     {
         public CustomerCrmDbContext(DbContextOptions<CustomerCrmDbContext> options):base(options)
         {          
@@ -16,9 +17,9 @@ namespace Antra.CustomerCRM.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.Entity<Product>()
-            //    .HasKey(nameof(Product.Id), nameof(Product.VendorId),
-            //    nameof(Product.CategoryId), nameof(Product.SupplierId));
+            builder.Entity<Product>()
+                .HasKey(nameof(Product.Id), nameof(Product.VendorId),
+                nameof(Product.CategoryId), nameof(Product.SupplierId));
 
         }
 

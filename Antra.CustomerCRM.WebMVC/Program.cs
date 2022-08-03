@@ -8,35 +8,39 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-
 builder.Services.AddScoped<ICategoryRepositoryAsync, CategoryRepositoryAsync>();
-builder.Services.AddScoped<ICategoryServiceAsync, CategoryServiceAsync>();
-
 builder.Services.AddScoped<ICustomerRepositoryAsync, CustomerRepositoryAsync>();
-builder.Services.AddScoped<ICustomerServiceAsync, CustomerServiceAsync>();
-
 builder.Services.AddScoped<IEmployeeRepositoryAsync, EmployeeRepositoryAsync>();
-builder.Services.AddScoped<IEmployeeServiceAsync, EmployeeServiceAsync>();
-
 builder.Services.AddScoped<IProductRepositoryAsync, ProductRepositoryAsync>();
-builder.Services.AddScoped<IProductServiceAsync, ProductServiceAsync>();
-
 builder.Services.AddScoped<IRegionRepositoryAsync, RegionRepositoryAsync>();
-builder.Services.AddScoped<IRegionServiceAsync, RegionServiceAsync>();
-
 builder.Services.AddScoped<IShipperRepositoryAsync, ShipperRepositoryAsync>();
-builder.Services.AddScoped<IShipperServiceAsync, ShipperServiceAsync>();
-
 builder.Services.AddScoped<IVendorRepositoryAsync, VendorRepositoryAsync>();
-builder.Services.AddScoped<IVendorServiceAsync, VendorServiceAsync>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
+
+builder.Services.AddScoped<ICategoryServiceAsync, CategoryServiceAsync>();
+builder.Services.AddScoped<ICustomerServiceAsync, CustomerServiceAsync>();
+builder.Services.AddScoped<IEmployeeServiceAsync, EmployeeServiceAsync>();
+builder.Services.AddScoped<IProductServiceAsync, ProductServiceAsync>();
+builder.Services.AddScoped<IRegionServiceAsync, RegionServiceAsync>();
+builder.Services.AddScoped<IShipperServiceAsync, ShipperServiceAsync>();
+builder.Services.AddScoped<IVendorServiceAsync, VendorServiceAsync>();
+builder.Services.AddScoped<IAccountServiceAsync, AccountServiceAsync>();
 
 
 builder.Services
     .AddSqlServer<CustomerCrmDbContext>(
     builder.Configuration.GetConnectionString("CustomerCRM")
     );
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();// can limit to one origin
+    });
+});
+
 
 var app = builder.Build();
 
@@ -49,7 +53,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
 app.UseHttpsRedirection();
+app.UseCors();  // put this here
 app.UseStaticFiles();
 
 app.UseRouting();

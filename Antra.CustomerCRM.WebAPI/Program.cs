@@ -1,8 +1,10 @@
 using Antra.CustomerCRM.Core.Contracts.Repository;
 using Antra.CustomerCRM.Core.Contracts.Service;
+using Antra.CustomerCRM.Core.Entities;
 using Antra.CustomerCRM.Infrastructure.Data;
 using Antra.CustomerCRM.Infrastructure.Repository;
 using Antra.CustomerCRM.Infrastructure.Service;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +41,9 @@ builder.Services
     .AddSqlServer<CustomerCrmDbContext>(
     builder.Configuration.GetConnectionString("CustomerCRM")
     );
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<CustomerCrmDbContext>()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
