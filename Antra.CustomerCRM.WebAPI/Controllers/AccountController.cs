@@ -2,6 +2,9 @@
 using Antra.CustomerCRM.Core.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 
 namespace Antra.CustomerCRM.WebAPI.Controllers
@@ -11,9 +14,11 @@ namespace Antra.CustomerCRM.WebAPI.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountServiceAsync accountService;
-        public AccountController(IAccountServiceAsync accountService)
+        private readonly IConfiguration configuration;
+        public AccountController(IAccountServiceAsync accountService, IConfiguration configuration)
         {
             this.accountService = accountService;
+            this.configuration = configuration;
         }
 
         [HttpPost]
@@ -35,6 +40,33 @@ namespace Antra.CustomerCRM.WebAPI.Controllers
                 sb.Append(item.Description);
             }
             return BadRequest(sb.ToString());
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login(LoginModel model)
+        {
+            var result = await accountService.LoginAsync(model);
+            if (!result.Succeeded)
+                return Unauthorized(new {Message="Invalid Username or Password"});
+
+            // list of claims
+            var authClaims = new List<Claim> {
+                new Claim(ClaimTypes.Name, model.Email),
+                new Claim(ClaimTypes.Country, "USA"),
+                new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
+            };
+
+            var authKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT"]));
+            var token = new JwtSecurityToken(
+                issuer: configuration["JWT:ValidIssuer"],
+                    audience: configuration["JWT:ValidAudience"],
+                    expires: DateTime.Now.AddDays(1),
+                    claims: authClaims,
+                    signingCredentials: new SigningCredentials(authKey,SecurityAlgorithms.HmacSha256Signature)
+                );
+            var t = new JwtSecurityTokenHandler().WriteToken(token);
+            return Ok(new {jwt=t});
         }
     }
 }

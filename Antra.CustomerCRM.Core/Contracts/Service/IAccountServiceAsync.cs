@@ -11,5 +11,6 @@ namespace Antra.CustomerCRM.Core.Contracts.Service
     public interface IAccountServiceAsync
     {
         Task<IdentityResult> SignUpAsync(SignUpModel model);
+        public Task<SignInResult> LoginAsync(LoginModel model);
     }
 }

@@ -19,6 +19,11 @@ namespace Antra.CustomerCRM.Infrastructure.Service
             this.accountRepository = accountRepository;
         }
 
+        public Task<SignInResult> LoginAsync(LoginModel model)
+        {
+            return this.accountRepository.LoginAsync(model);
+        }
+
         public Task<IdentityResult> SignUpAsync(SignUpModel model)
         {
             return accountRepository.SignUpAsync(model);

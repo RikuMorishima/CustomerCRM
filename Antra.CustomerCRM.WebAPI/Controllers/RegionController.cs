@@ -1,10 +1,12 @@
 ﻿using Antra.CustomerCRM.Core.Contracts.Service;
 using Antra.CustomerCRM.Core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Antra.CustomerCRM.WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RegionController : ControllerBase
