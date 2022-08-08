@@ -17,6 +17,7 @@ namespace Antra.CustomerCRM.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
             builder.Entity<Product>()
                 .HasKey(nameof(Product.Id), nameof(Product.VendorId),
                 nameof(Product.CategoryId), nameof(Product.SupplierId));

@@ -57,7 +57,7 @@ namespace Antra.CustomerCRM.WebAPI.Controllers
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
             };
 
-            var authKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT"]));
+            var authKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
             var token = new JwtSecurityToken(
                 issuer: configuration["JWT:ValidIssuer"],
                     audience: configuration["JWT:ValidAudience"],
